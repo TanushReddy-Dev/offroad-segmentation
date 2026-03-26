@@ -1,0 +1,57 @@
+# Configuration for Semantic Segmentation Training
+# Usage: python train.py --config config.yaml
+
+# Dataset Configuration
+dataset:
+  path: "./dataset"
+  train_split: "train"
+  val_split: "val"
+  num_classes: 256
+
+# Data Processing
+data:
+  image_size: 320
+  num_workers: 4
+  batch_size: 12
+
+# Model Configuration
+model:
+  name: "FCN-ResNet50"
+  num_classes: 256
+  pretrained: false
+  weights: null
+
+# Training Configuration
+training:
+  epochs: 50
+  batch_size: 12
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  optimizer: "AdamW"
+  scheduler: "CosineAnnealingLR"
+  gradient_clip_norm: 1.0
+  mixed_precision: true
+
+# Loss Function
+loss:
+  type: "CrossEntropyLoss"
+  ignore_index: 255
+
+# Augmentation
+augmentation:
+  horizontal_flip: 0.5
+  vertical_flip: 0.3
+  brightness_contrast: 0.2
+  gaussian_noise: 0.1
+
+# Output
+output:
+  directory: "./outputs"
+  save_checkpoint: true
+  checkpoint_dir: "./outputs/checkpoints"
+  log_dir: "./outputs/logs"
+
+# Hardware
+hardware:
+  device: "cuda:0"
+  use_cuda: true
