@@ -1,29 +1,27 @@
-# 🎯 HACKATHON SUBMISSION PACKAGE
-## Offroad Terrain Semantic Segmentation
+# 🎯 Semantic Segmentation for Desert Offroad Terrain
+## FCN-ResNet50 Model | IoU: 0.9889 (Target: 0.90) ✅ EXCEEDS BY 9.87%
 
 ---
 
-## 📦 SUBMISSION CONTENTS
+## ⚡ QUICK START (LOCAL TRAINING)
 
-This folder contains the complete submission package for the semantic segmentation hackathon.
+### **Option 1: Train Locally (RECOMMENDED)**
 
-### **Files Included:**
+```bash
+# 1. Install dependencies
+pip install -r requirements.txt
 
-| File | Purpose | Status |
-|------|---------|--------|
-| **KAGGLE_NOTEBOOK_FIXED.py** | Main training code (run on Kaggle) | ✅ Ready |
-| **KAGGLE_INFERENCE_TTA.py** | Inference + Test Time Augmentation | ✅ Ready |
-| **KAGGLE_SUBMIT_TO_GDRIVE.py** | Google Drive upload script | ✅ Ready |
-| **TECHNICAL_REPORT.md** | Complete 8-page technical report | ✅ Ready |
-| **HACKATHON_SUBMISSION.md** | Executive summary | ✅ Ready |
-| **requirements.txt** | Python dependencies | ✅ Ready |
-| **README.md** | Quick start guide | ✅ Ready |
+# 2. Prepare dataset
+# Place dataset in: ./dataset/train and ./dataset/val
 
----
+# 3. Train the model
+python train.py --config config.yaml
 
-## 🚀 QUICK START (5 MINUTES)
+# 4. Run inference
+python test.py --model outputs/checkpoints/best_model.pt --data dataset/val
+```
 
-### **Step 1: Train the Model on Kaggle**
+### **Option 2: Train on Kaggle (FREE GPU)**
 
 1. Go to https://kaggle.com/code → **New Notebook**
 2. Enable GPU: Settings → Accelerator → **GPU (T4)**
@@ -42,30 +40,37 @@ E 3/50 | Train IoU: 0.9890 | Val IoU: 0.9882
 E 50/50 | Train IoU: 0.9899 | Val IoU: 0.9889 ✅
 ```
 
-### **Step 2: Submit to Google Drive**
+---
 
-Create new cell in Kaggle notebook and paste:
+## 📦 SUBMISSION CONTENTS
 
-```python
-from google.colab import auth
-from googleapiclient.discovery import build
-import torch
-from googleapiclient.http import MediaFileUpload
+This folder contains the complete submission package for the semantic segmentation hackathon.
 
-auth.authenticate_user()
-drive_service = build('drive', 'v3')
+### **Core Files:**
 
-checkpoint = torch.load('/kaggle/working/checkpoints/best_model.pt', map_location='cpu')
-print(f"✓ Model IoU: {checkpoint.get('iou', '?'):.4f}")
+| File | Purpose |
+|------|---------|
+| **train.py** | Complete training script with config support |
+| **test.py** | Inference and testing script |
+| **config.yaml** | Hyperparameter configuration |
+| **requirements.txt** | Python dependencies |
+| **README.md** | This file - complete usage guide |
 
-# Upload to Google Drive (see KAGGLE_SUBMIT_TO_GDRIVE.py for full code)
-```
+### **Documentation:**
 
-### **Step 3: Download Results**
+| File | Purpose |
+|------|---------|
+| **TECHNICAL_REPORT.md** | 8-page comprehensive technical report |
+| **HACKATHON_SUBMISSION.md** | Executive summary |
+| **00_START_HERE.md** | Quick facts and overview |
 
-In Kaggle notebook → Click **"Data"** → Download:
-- `best_model.pt` (trained model)
-- `training_history.json` (metrics)
+### **Kaggle Alternatives:**
+
+| File | Purpose |
+|------|---------|
+| **KAGGLE_NOTEBOOK_FIXED.py** | Standalone Kaggle notebook version |
+| **KAGGLE_INFERENCE_TTA.py** | Inference with Test Time Augmentation |
+| **KAGGLE_SUBMIT_TO_GDRIVE.py** | Google Drive upload script |
 
 ---
 
@@ -151,9 +156,76 @@ Quick setup and usage guide
 
 ---
 
-## 📖 HOW TO USE EACH FILE
+## 📖 DETAILED INSTRUCTIONS
 
-### **KAGGLE_NOTEBOOK_FIXED.py**
+### **train.py - Training Script**
+
+Train the model locally:
+```bash
+# Full training (50 epochs)
+python train.py --config config.yaml
+
+# Quick test (5 epochs)
+python train.py --config config.yaml --epochs 5
+
+# Custom parameters
+python train.py --epochs 50 --batch-size 12 --lr 0.001 --image-size 320
+```
+
+**Key Features:**
+- YAML config support for reproducibility
+- Automatic checkpoint saving
+- Checkpoint auto-resume if interrupted
+- Mixed precision training (2× speedup)
+- Per-epoch IoU tracking
+- Gradient clipping for stability
+
+### **test.py - Inference Script**
+
+Test the trained model:
+```bash
+# Run on validation dataset
+python test.py --model outputs/checkpoints/best_model.pt --data dataset/val
+
+# Save results to JSON
+python test.py --model best_model.pt --data images/ --save-results
+
+# Single image inference
+python test.py --model best_model.pt --image single_image.png
+```
+
+**Output:**
+- Per-image IoU metrics
+- Mean IoU and statistics
+- Results saved to `results.json`
+- Optional visualization images
+
+### **config.yaml - Configuration**
+
+Modify training parameters:
+```yaml
+# Dataset Configuration
+dataset:
+  path: "./dataset"
+  num_classes: 256
+
+# Model Configuration
+model:
+  name: "FCN-ResNet50"
+  num_classes: 256
+
+# Training Configuration
+training:
+  epochs: 50
+  batch_size: 12
+  learning_rate: 0.001
+  optimizer: "AdamW"
+  scheduler: "CosineAnnealingLR"
+```
+
+### **KAGGLE_NOTEBOOK_FIXED.py (Alternative)**
+
+Use on Kaggle for free GPU training:
 ```python
 # 1. Copy entire file
 # 2. Paste into Kaggle notebook as single cell
@@ -163,20 +235,13 @@ Quick setup and usage guide
 ```
 
 ### **KAGGLE_INFERENCE_TTA.py**
+
+Inference with test-time augmentation:
 ```python
 # 1. Load trained model
 # 2. Run inference on validation set
 # 3. Apply Test Time Augmentation (4× predictions)
 # 4. Save visualizations
-```
-
-### **KAGGLE_SUBMIT_TO_GDRIVE.py**
-```python
-# 1. Authenticate with Google Drive
-# 2. Create folder "Offroad_Segmentation_Results"
-# 3. Upload model checkpoint
-# 4. Upload training history
-# 5. Print Google Drive links
 ```
 
 ---
