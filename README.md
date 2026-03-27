@@ -323,6 +323,17 @@ All files are clean, organized, and ready for hackathon submission.
 
 ---
 
+## 👥 Team
+
+| Name | GitHub |
+|------|--------|
+| Tanush Reddy | [@tanushreddy-dev](https://github.com/tanushreddy-dev) |
+| Manognya Kanala | [@manognyakanala](https://github.com/manognyakanala) |
+| Praharsha Reddy | [@praharshareddy07-byte](https://github.com/praharshareddy07-byte) |
+| Saravan Raja | [@saravanraja08](https://github.com/saravanraja08) |
+
+---
+
 **Project Status**: ✅ **COMPLETE & PRODUCTION READY**
 
 **Achieved IoU**: 0.9889 (Target: 0.90) ✅
