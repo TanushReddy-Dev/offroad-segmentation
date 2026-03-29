@@ -3,6 +3,19 @@
 
 ---
 
+## 👥 Project Team
+
+| Name | Role | Responsibilities |
+|------|------|------------------|
+| Tanush Reddy | Project Lead | Architecture Design, Model Selection, PyTorch Implementation |
+| Manognya Kanala | Model & Optimization | Hyperparameter Tuning, Mixed Precision Training, Performance Optimization |
+| Praharsha Reddy | Data & Testing | Data Pipeline, Validation Framework, Testing Infrastructure |
+| Saravan Raja | Infrastructure & Deployment | Kaggle Setup, Google Drive Integration, Deployment Pipeline |
+
+**Project Lead Contact**: reddytanush11@gmail.com | 6309360135
+
+---
+
 ## Executive Summary
 
 This report documents the development and deployment of a high-performance semantic segmentation model for classifying desert terrain features using PyTorch on Google Colab. The project achieved a **validation IoU of 0.9882+**, significantly exceeding the target of 0.90.
@@ -567,22 +580,9 @@ for epoch in range(50):
 
 ---
 
-## 👥 Team Contributors
-
-| Name | Role | Responsibilities | GitHub |
-|------|------|------------------|--------|
-| Tanush Reddy | Project Lead | Architecture Design, Model Selection, PyTorch Implementation | [@tanushreddy-dev](https://github.com/tanushreddy-dev) |
-| Manognya Kanala | Model & Optimization | Hyperparameter Tuning, Mixed Precision Training, Performance Optimization | [@manognyakanala](https://github.com/manognyakanala) |
-| Praharsha Reddy | Data & Testing | Data Pipeline, Validation Framework, Testing Infrastructure | [@praharshareddy07-byte](https://github.com/praharshareddy07-byte) |
-| Saravan Raja | Infrastructure & Deployment | Kaggle Setup, Google Drive Integration, Deployment Pipeline | [@saravanraja08](https://github.com/saravanraja08) |
-
 ---
 
 **Report Generated**: 2026-03-29
 **Model Performance**: IoU = 0.9905 (validation best), 0.9915 (training final)
 **Training Infrastructure**: Kaggle Notebooks (Tesla T4 GPU)
 **Status**: ✅ Production Ready
-
-### Project Lead Contact
-**Email**: reddytanush11@gmail.com  
-**Phone**: 6309360135

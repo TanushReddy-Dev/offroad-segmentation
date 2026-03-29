@@ -379,49 +379,54 @@ For issues or questions:
 
 ---
 
-Before submitting:
+## ✅ SUBMISSION CHECKLIST
+
 - [x] Model trained and converged (50 epochs)
 - [x] Validation IoU: 0.9905
-- [x] Checkpoint saved
-- [x] Code reproducible
+- [x] Checkpoint saved and available
+- [x] Code reproducible on Kaggle GPU
 - [x] Documentation complete
-- [x] 8-page technical report
-- [x] Inference script ready
-- [x] Results verified on Kaggle
+- [x] Technical report (8 pages)
+- [x] Inference scripts ready
+- [x] All results verified
 
 ---
 
-## 📋 FILE SUMMARY
+## 📦 SUBMISSION PACKAGE CONTENTS
 
 ```
-📁 Cosmos/
-├── 📄 KAGGLE_NOTEBOOK_FIXED.py          (Main training code)
-├── 📄 KAGGLE_INFERENCE_TTA.py           (Inference + TTA)
-├── 📄 KAGGLE_SUBMIT_TO_GDRIVE.py        (Google Drive upload)
-├── 📄 TECHNICAL_REPORT.md               (8-page report)
-├── 📄 HACKATHON_SUBMISSION.md           (Executive summary)
-├── 📄 SUBMISSION_README.md              (This file)
-├── 📄 README.md                         (Quick start)
-└── 📄 requirements.txt                  (Dependencies)
+offroad-segmentation/
+├── README.md                              (Quick start guide)
+├── TECHNICAL_REPORT.md                    (8-page technical report)
+├── TECHNICAL_REPORT.pdf                   (PDF version)
+├── HACKATHON_SUBMISSION.md                (Executive summary)
+├── train.py                               (Training script)
+├── test.py                                (Inference script)
+├── config.yaml                            (Configuration)
+├── requirements.txt                       (Dependencies)
+├── kaggle_training.py                     (Kaggle notebook version)
+├── kaggle_inference_tta.py                (TTA inference)
+├── kaggle_gdrive_upload.py                (Drive upload utility)
+└── Offroad_Segmentation_Training_Dataset/ (Training data)
 ```
 
----
-
-## 🎉 READY TO SUBMIT!
-
-All files are clean, organized, and ready for hackathon submission.
-
-**Total submission size**: < 100MB
-**Time to reproduce**: ~2 hours (training on Kaggle T4 GPU)
-**Cost**: FREE (uses Kaggle's free GPU allocation)
+**Download Pre-trained Model**: [Google Drive Link](https://drive.google.com/file/d/1e8zNW8sLdpNVOoO-F5iLrwjyzsrwquOA/view?usp=sharing) (109 MB)
 
 ---
+
+## 📊 FINAL RESULTS
+
+**Model Performance:**
+- Validation IoU: 0.9905 ✅
+- Training IoU: 0.9915
+- Best Validation Loss: 0.3225
+- Total Training Time: ~2 hours (50 epochs on Tesla T4)
 
 **Project Status**: ✅ **COMPLETE & PRODUCTION READY**
 
-**Validation IoU**: 0.9905 ✅
-**Model Version**: FCN-ResNet50 v1.0
-**Training Platform**: Kaggle (Tesla T4 GPU)
-**Submission Date**: 2026-03-29
-
-🏆 **Thank you and good luck with your hackathon submission!** 🏆
+**Key Information:**
+- Model Version: FCN-ResNet50 v1.0
+- Training Platform: Kaggle Notebooks (Free GPU)
+- Submission Date: 2026-03-29
+- Total Submission Size: < 100MB
+- Reproducibility: ~2 hours on Kaggle T4 GPU

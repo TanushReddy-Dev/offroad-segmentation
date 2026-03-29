@@ -3,11 +3,24 @@
 
 ---
 
+## 👥 Project Team
+
+| Name | Role | Responsibilities |
+|------|------|------------------|
+| Tanush Reddy | Project Lead | Architecture Design, Model Selection, PyTorch Implementation |
+| Manognya Kanala | Model & Optimization | Hyperparameter Tuning, Mixed Precision Training, Performance Optimization |
+| Praharsha Reddy | Data & Testing | Data Pipeline, Validation Framework, Testing Infrastructure |
+| Saravan Raja | Infrastructure & Deployment | Kaggle Setup, Google Drive Integration, Deployment Pipeline |
+
+**Project Lead Contact**: reddytanush11@gmail.com | 6309360135
+
+---
+
 ## 📋 PROJECT OVERVIEW
 
 **Team Project**: Semantic Segmentation for Desert Terrain Classification
-**Objective**: Achieve IoU > 0.90 for multi-class terrain segmentation
-**Status**: ✅ **COMPLETE** - IoU: 0.9889 (10% above target)
+**Objective**: High-performance multi-class terrain segmentation
+**Status**: ✅ **COMPLETE** - Validation IoU: 0.9905
 
 ---
 
@@ -244,34 +257,19 @@ Run inference on validation set
 
 ## 🚀 NEXT STEPS FOR USERS
 
-1. **Download**: Get best_model.pt from Kaggle notebook
-2. **Test**: Run KAGGLE_INFERENCE_TTA.py for predictions
-3. **Deploy**: Use model_loader.py for production inference
+1. **Download**: Get best_model.pt from Google Drive link
+2. **Test**: Run inference with kaggle_inference_tta.py
+3. **Deploy**: Use test.py for production inference
 4. **Improve**: Try ensemble methods or multi-scale training
-5. **Submit**: Include model + report to hackathon
+5. **Submit**: Include model + report with hackathon submission
 
 ---
 
----
+## 📞 TECHNICAL SUPPORT
 
-## 📞 PROJECT LEAD & TECHNICAL SUPPORT
-
-**Project Lead**: Tanush Reddy  
-📧 **Email**: reddytanush11@gmail.com  
-📱 **Phone**: 6309360135
-
-For questions or technical support, please contact the project lead.
-
----
-
-## 👥 TEAM MEMBERS
-
-| Name | Role | Responsibilities | GitHub |
-|------|------|------------------|--------|
-| Tanush Reddy | Project Lead | Architecture Design, Model Selection, PyTorch Implementation | [@tanushreddy-dev](https://github.com/tanushreddy-dev) |
-| Manognya Kanala | Model & Optimization | Hyperparameter Tuning, Mixed Precision Training, Performance Optimization | [@manognyakanala](https://github.com/manognyakanala) |
-| Praharsha Reddy | Data & Testing | Data Pipeline, Validation Framework, Testing Infrastructure | [@praharshareddy07-byte](https://github.com/praharshareddy07-byte) |
-| Saravan Raja | Infrastructure & Deployment | Kaggle Setup, Google Drive Integration, Deployment Pipeline | [@saravanraja08](https://github.com/saravanraja08) |
+For technical issues or questions, contact the project lead:
+- **Email**: reddytanush11@gmail.com
+- **Phone**: 6309360135
 
 ---
 
