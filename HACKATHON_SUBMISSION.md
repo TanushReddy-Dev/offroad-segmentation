@@ -15,12 +15,12 @@
 
 | Metric | Result | Target | Status |
 |--------|--------|--------|--------|
-| Validation IoU | **0.9889** | 0.90 | ✅ +9.87% |
-| Training IoU | 0.9899 | - | ✅ Excellent |
+| Validation IoU | **0.9905** | 0.90 | ✅ +10.06% |
+| Training IoU | 0.9915 | - | ✅ Excellent |
 | Model Size | 33.08M params | - | ✅ Efficient |
 | Training Time | 35-40s/epoch | - | ✅ Fast |
 | GPU Memory | 14.5/14.56 GB | ≤15GB | ✅ Optimal |
-| Best Loss | 0.3998 | - | ✅ Converged |
+| Best Loss | 0.3225 | - | ✅ Converged |
 
 ---
 
@@ -252,6 +252,29 @@ Run inference on validation set
 
 ---
 
+---
+
+## 📞 PROJECT LEAD & TECHNICAL SUPPORT
+
+**Project Lead**: Tanush Reddy  
+📧 **Email**: reddytanush11@gmail.com  
+📱 **Phone**: 6309360135
+
+For questions or technical support, please contact the project lead.
+
+---
+
+## 👥 TEAM MEMBERS
+
+| Name | Role | Responsibilities | GitHub |
+|------|------|------------------|--------|
+| Tanush Reddy | Project Lead | Architecture Design, Model Selection, PyTorch Implementation | [@tanushreddy-dev](https://github.com/tanushreddy-dev) |
+| Manognya Kanala | Model & Optimization | Hyperparameter Tuning, Mixed Precision Training, Performance Optimization | [@manognyakanala](https://github.com/manognyakanala) |
+| Praharsha Reddy | Data & Testing | Data Pipeline, Validation Framework, Testing Infrastructure | [@praharshareddy07-byte](https://github.com/praharshareddy07-byte) |
+| Saravan Raja | Infrastructure & Deployment | Kaggle Setup, Google Drive Integration, Deployment Pipeline | [@saravanraja08](https://github.com/saravanraja08) |
+
+---
+
 ## 📞 TECHNICAL SUPPORT
 
 ### Common Issues & Solutions
@@ -300,12 +323,12 @@ A: Use TTA (+0.002), ensemble with U-Net (+0.01), class weighting.
 ╠════════════════════════════════════════════════════════════════╣
 ║  Metric                    │  Result         │  Target         ║
 ╠════════════════════════════════════════════════════════════════╣
-║  Validation IoU            │  0.9889 ✓       │  > 0.90         ║
-║  Training IoU              │  0.9899         │  -              ║
-║  Best Validation Loss      │  0.3998         │  < 0.5          ║
+║  Validation IoU            │  0.9905 ✓       │  > 0.90         ║
+║  Training IoU              │  0.9915         │  -              ║
+║  Best Validation Loss      │  0.3225         │  < 0.5          ║
 ║  Model Parameters          │  33.08M         │  Efficient      ║
 ║  Inference Speed           │  50ms/img       │  Real-time      ║
-║  Training Time             │  ~50 min        │  < 2 hours      ║
+║  Training Time             │  ~2 hours       │  < 2 hours      ║
 ║  GPU Memory Used           │  14.5/14.56 GB  │  ≤ 15GB         ║
 ║  Overfitting Gap           │  0.001          │  < 0.01         ║
 ╠════════════════════════════════════════════════════════════════╣
@@ -317,8 +340,8 @@ A: Use TTA (+0.002), ensemble with U-Net (+0.01), class weighting.
 
 **Project Status**: ✅ **COMPLETE & PRODUCTION READY**
 
-**Submission Date**: 2026-03-26
+**Submission Date**: 2026-03-29
 **Model Version**: FCN-ResNet50 v1.0
-**Best Validation IoU**: 0.9889
+**Best Validation IoU**: 0.9905
 
 🎉 **Thank you for reviewing this submission!** 🎉

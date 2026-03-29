@@ -370,12 +370,12 @@ For issues or questions:
 
 ## 👥 TEAM MEMBERS
 
-| Name | Role | GitHub |
-|------|------|--------|
-| Tanush Reddy | Project Lead | [@tanushreddy-dev](https://github.com/tanushreddy-dev) |
-| Manognya Kanala | Data & Model | [@manognyakanala](https://github.com/manognyakanala) |
-| Praharsha Reddy | Training & Testing | [@praharshareddy07-byte](https://github.com/praharshareddy07-byte) |
-| Saravan Raja | Infrastructure | [@saravanraja08](https://github.com/saravanraja08) |
+| Name | Role | Responsibilities | GitHub |
+|------|------|------------------|--------|
+| Tanush Reddy | Project Lead | Architecture Design, Model Selection, PyTorch Implementation | [@tanushreddy-dev](https://github.com/tanushreddy-dev) |
+| Manognya Kanala | Model & Optimization | Hyperparameter Tuning, Mixed Precision Training, Performance Optimization | [@manognyakanala](https://github.com/manognyakanala) |
+| Praharsha Reddy | Data & Testing | Data Pipeline, Validation Framework, Testing Infrastructure | [@praharshareddy07-byte](https://github.com/praharshareddy07-byte) |
+| Saravan Raja | Infrastructure & Deployment | Kaggle Setup, Google Drive Integration, Deployment Pipeline | [@saravanraja08](https://github.com/saravanraja08) |
 
 ---
 

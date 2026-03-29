@@ -569,15 +569,20 @@ for epoch in range(50):
 
 ## 👥 Team Contributors
 
-| Name | Role | GitHub |
-|------|------|--------|
-| Tanush Reddy | Project Lead, Architecture Design | [@tanushreddy-dev](https://github.com/tanushreddy-dev) |
-| Manognya Kanala | Model Optimization, Hyperparameter Tuning | [@manognyakanala](https://github.com/manognyakanala) |
-| Praharsha Reddy | Data Pipeline, Validation Framework | [@praharshareddy07-byte](https://github.com/praharshareddy07-byte) |
-| Saravan Raja | Testing & Deployment | [@saravanraja08](https://github.com/saravanraja08) |
+| Name | Role | Responsibilities | GitHub |
+|------|------|------------------|--------|
+| Tanush Reddy | Project Lead | Architecture Design, Model Selection, PyTorch Implementation | [@tanushreddy-dev](https://github.com/tanushreddy-dev) |
+| Manognya Kanala | Model & Optimization | Hyperparameter Tuning, Mixed Precision Training, Performance Optimization | [@manognyakanala](https://github.com/manognyakanala) |
+| Praharsha Reddy | Data & Testing | Data Pipeline, Validation Framework, Testing Infrastructure | [@praharshareddy07-byte](https://github.com/praharshareddy07-byte) |
+| Saravan Raja | Infrastructure & Deployment | Kaggle Setup, Google Drive Integration, Deployment Pipeline | [@saravanraja08](https://github.com/saravanraja08) |
 
 ---
 
-**Report Generated**: 2026-03-26
-**Model Performance**: IoU = 0.9889 (9.87% above target)
+**Report Generated**: 2026-03-29
+**Model Performance**: IoU = 0.9905 (validation best), 0.9915 (training final)
+**Training Infrastructure**: Kaggle Notebooks (Tesla T4 GPU)
 **Status**: ✅ Production Ready
+
+### Project Lead Contact
+**Email**: reddytanush11@gmail.com  
+**Phone**: 6309360135
