@@ -72,7 +72,50 @@ E50/50  | Train IoU: 0.9915 | Val IoU: 0.9905 ✅
 
 ---
 
-## 📦 SUBMISSION CONTENTS
+## 📥 PRE-TRAINED MODEL (READY TO USE)
+
+### **Download Pre-Trained Best Model**
+
+**Validation IoU: 0.9905** | Trained for 50 epochs on Tesla T4
+
+🔗 **[Download best_model.pt (109 MB)](https://drive.google.com/file/d/1e8zNW8sLdpNVOoO-F5iLrwjyzsrwquOA/view?usp=sharing)**
+
+### **Setup (One-time):**
+
+```bash
+# 1. Download best_model.pt from link above
+# 2. Place in project root:
+cp ~/Downloads/best_model.pt ./best_model.pt
+
+# 3. Verify file exists
+ls -lh best_model.pt
+# Output: -rw-r--r-- 1 user staff 109M best_model.pt
+```
+
+### **Run Inference:**
+
+```bash
+# Single image
+python test.py --model best_model.pt --image sample.png
+
+# Entire validation set
+python test.py --model best_model.pt --data Offroad_Segmentation_Training_Dataset/val/Color_Images
+
+# With Test-Time Augmentation (better accuracy)
+python kaggle_inference_tta.py --model best_model.pt --data val_images/ --tta
+```
+
+### **Expected Results:**
+
+```
+✓ Model: FCN-ResNet50
+✓ Parameters: 33.08M
+✓ Validation IoU: 0.9905
+✓ Inference Speed: 50ms per image
+✓ GPU Memory: 2.1 GB
+```
+
+---
 
 This folder contains the complete submission package for the semantic segmentation hackathon.
 
