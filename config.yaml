@@ -3,7 +3,7 @@
 
 # Dataset Configuration
 dataset:
-  path: "./dataset"
+  path: "./Offroad_Segmentation_Training_Dataset"
   train_split: "train"
   val_split: "val"
   num_classes: 256

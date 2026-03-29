@@ -3,33 +3,61 @@
 
 ---
 
-## ⚡ QUICK START (LOCAL TRAINING)
+## ⚡ QUICK START
 
-### **Option 1: Train Locally (RECOMMENDED)**
+### **🚀 Option 1: Train on Kaggle (RECOMMENDED - FREE GPU)**
+
+**Why Kaggle?**
+- ✅ Free T4 GPU (30 hours/week allocation)
+- ✅ Training time: ~50 minutes (35-40s per epoch)
+- ✅ No setup required, cloud-based
+- ✅ Easy model download
+
+**Steps:**
+1. Go to https://kaggle.com/code → **New Notebook**
+2. Enable GPU: Settings → Accelerator → **GPU (T4)**
+3. Add Dataset: Data → Search **"offroad"** → Add **"Offroad Segmentation Training Dataset"**
+4. Delete all default cells
+5. Copy entire content from **kaggle_training.py** (in this repo)
+6. Paste as ONE cell → Click ▶️ **Run**
+7. Wait ~50 minutes for training to complete
+8. Download `best_model.pt` from outputs
+
+### **Option 2: Train Locally (CPU/GPU)**
+
+**Note:** Choose based on your hardware:
+- **With GPU (RTX/V100/A100)**: ~5-10 minutes per epoch = **4-8 hours total**
+- **With CPU only**: ~15-26 seconds per batch = **70-100 hours total** (not recommended)
 
 ```bash
 # 1. Install dependencies
 pip install -r requirements.txt
 
-# 2. Prepare dataset
-# Place dataset in: ./dataset/train and ./dataset/val
+# 2. Dataset is already included: Offroad_Segmentation_Training_Dataset/
+#    Structure:
+#    ├── train/
+#    │   ├── Color_Images/
+#    │   └── Segmentation/
+#    └── val/
+#        ├── Color_Images/
+#        └── Segmentation/
 
-# 3. Train the model
+# 3. Train the model (if dataset in same directory)
 python train.py --config config.yaml
 
-# 4. Run inference
-python test.py --model outputs/checkpoints/best_model.pt --data dataset/val
+# 4. Or specify dataset path explicitly
+python train.py --config config.yaml --data-path ./Offroad_Segmentation_Training_Dataset
+
+# 5. Run inference
+python test.py --model outputs/checkpoints/best_model.pt --data Offroad_Segmentation_Training_Dataset/val/Color_Images
 ```
 
-### **Option 2: Train on Kaggle (FREE GPU)**
-
-1. Go to https://kaggle.com/code → **New Notebook**
-2. Enable GPU: Settings → Accelerator → **GPU (T4)**
-3. Add Dataset: Data → Search **"offroad"** → Add
-4. Delete all default cells
-5. Copy entire content from **KAGGLE_NOTEBOOK_FIXED.py**
-6. Paste as ONE cell → Click ▶️ **Run**
-7. Wait ~50 minutes for training
+**Time Estimates:**
+```
+Kaggle (T4 GPU):     ~50 minutes  ✅ RECOMMENDED
+Local (RTX 3090):    ~4-8 hours
+Local (CPU only):    ~70-100 hours ⚠️ NOT RECOMMENDED
+```
 
 **Expected Output:**
 ```
@@ -61,16 +89,16 @@ This folder contains the complete submission package for the semantic segmentati
 | File | Purpose |
 |------|---------|
 | **TECHNICAL_REPORT.md** | 8-page comprehensive technical report |
+| **TECHNICAL_REPORT.pdf** | PDF version of technical report |
 | **HACKATHON_SUBMISSION.md** | Executive summary |
-| **00_START_HERE.md** | Quick facts and overview |
 
-### **Kaggle Alternatives:**
+### **Kaggle Scripts:**
 
 | File | Purpose |
 |------|---------|
-| **KAGGLE_NOTEBOOK_FIXED.py** | Standalone Kaggle notebook version |
-| **KAGGLE_INFERENCE_TTA.py** | Inference with Test Time Augmentation |
-| **KAGGLE_SUBMIT_TO_GDRIVE.py** | Google Drive upload script |
+| **kaggle_training.py** | Standalone Kaggle notebook version |
+| **kaggle_inference_tta.py** | Inference with Test Time Augmentation |
+| **kaggle_gdrive_upload.py** | Google Drive upload script |
 
 ---
 
@@ -223,7 +251,7 @@ training:
   scheduler: "CosineAnnealingLR"
 ```
 
-### **KAGGLE_NOTEBOOK_FIXED.py (Alternative)**
+### **kaggle_training.py (Training on Kaggle)**
 
 Use on Kaggle for free GPU training:
 ```python
@@ -234,7 +262,7 @@ Use on Kaggle for free GPU training:
 # 5. Download best_model.pt
 ```
 
-### **KAGGLE_INFERENCE_TTA.py**
+### **kaggle_inference_tta.py (Inference & TTA)**
 
 Inference with test-time augmentation:
 ```python
@@ -260,6 +288,12 @@ Inference with test-time augmentation:
 
 ## 🔧 TROUBLESHOOTING
 
+**Q: ValueError: num_samples should be a positive integer (0 samples)?**
+A: Dataset path is wrong. Ensure `Offroad_Segmentation_Training_Dataset` is in your working directory. Update config.yaml with correct path, or run:
+```bash
+python train.py --config config.yaml --data-path ./Offroad_Segmentation_Training_Dataset
+```
+
 **Q: Model takes too long?**
 A: Normal. T4 trains at 35-40s/epoch. Full 50 epochs = ~50 min.
 
@@ -277,9 +311,9 @@ A: Use TTA (+0.002), ensemble with U-Net (+0.01), class weighting.
 ## 📞 SUPPORT
 
 For issues or questions:
-1. Check TECHNICAL_REPORT.md (comprehensive)
+1. Check TECHNICAL_REPORT.md (comprehensive technical details)
 2. Review HACKATHON_SUBMISSION.md (executive summary)
-3. Inspect code comments in KAGGLE_NOTEBOOK_FIXED.py
+3. Inspect code comments in kaggle_training.py (Kaggle notebook)
 
 ---
 

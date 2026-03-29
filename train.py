@@ -29,9 +29,17 @@ from torchvision.models.segmentation import fcn_resnet50
 
 class Config:
     def __init__(self, config_dict=None):
+        # Determine device with proper fallback
+        try:
+            if torch.cuda.is_available():
+                self.device = 'cuda:0'
+            else:
+                self.device = 'cpu'
+        except:
+            self.device = 'cpu'
+        
         # Defaults
-        self.device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
-        self.dataset_path = './dataset'
+        self.dataset_path = './Offroad_Segmentation_Training_Dataset'
         self.output_dir = './outputs'
         self.batch_size = 12
         self.epochs = 50
@@ -42,7 +50,29 @@ class Config:
         self.num_workers = 4
         
         if config_dict:
-            self.__dict__.update(config_dict)
+            # Flatten nested config
+            if 'dataset' in config_dict:
+                self.dataset_path = config_dict['dataset'].get('path', self.dataset_path)
+                self.num_classes = config_dict['dataset'].get('num_classes', self.num_classes)
+            if 'data' in config_dict:
+                self.batch_size = config_dict['data'].get('batch_size', self.batch_size)
+                self.num_workers = config_dict['data'].get('num_workers', self.num_workers)
+                self.image_size = config_dict['data'].get('image_size', self.image_size)
+            if 'training' in config_dict:
+                self.epochs = config_dict['training'].get('epochs', self.epochs)
+                self.batch_size = config_dict['training'].get('batch_size', self.batch_size)
+                self.lr = config_dict['training'].get('learning_rate', self.lr)
+                self.weight_decay = config_dict['training'].get('weight_decay', self.weight_decay)
+            if 'output' in config_dict:
+                self.output_dir = config_dict['output'].get('directory', self.output_dir)
+            if 'hardware' in config_dict:
+                device_requested = config_dict['hardware'].get('device', self.device)
+                # Try to use requested device, fall back to CPU if it fails
+                try:
+                    torch.zeros(1).to(device_requested)
+                    self.device = device_requested
+                except:
+                    self.device = 'cpu'
     
     def to_dict(self):
         return self.__dict__
@@ -136,9 +166,9 @@ def train(config):
     os.makedirs(f'{config.output_dir}/checkpoints', exist_ok=True)
     os.makedirs(f'{config.output_dir}/logs', exist_ok=True)
     
-    print(f"\n✓ Device: {config.device}")
-    print(f"✓ Dataset: {config.dataset_path}")
-    print(f"✓ Output: {config.output_dir}\n")
+    print(f"\n[OK] Device: {config.device}")
+    print(f"[OK] Dataset: {config.dataset_path}")
+    print(f"[OK] Output: {config.output_dir}\n")
     
     # Dataset
     train_dataset = SegmentationDataset(
@@ -154,7 +184,7 @@ def train(config):
         image_size=config.image_size
     )
     
-    print(f"✓ Train: {len(train_dataset)} | Val: {len(val_dataset)}\n")
+    print(f"[OK] Train: {len(train_dataset)} | Val: {len(val_dataset)}\n")
     
     # DataLoaders
     train_loader = DataLoader(
@@ -176,8 +206,8 @@ def train(config):
     
     # Model
     model = fcn_resnet50(weights=None, num_classes=config.num_classes).to(config.device)
-    print(f"✓ Model: FCN-ResNet50")
-    print(f"✓ Params: {sum(p.numel() for p in model.parameters()) / 1e6:.2f}M\n")
+    print(f"[OK] Model: FCN-ResNet50")
+    print(f"[OK] Params: {sum(p.numel() for p in model.parameters()) / 1e6:.2f}M\n")
     
     # Optimization
     optimizer = optim.AdamW(model.parameters(), lr=config.lr, weight_decay=config.weight_decay)
@@ -193,12 +223,12 @@ def train(config):
     best_loss = float('inf')
     
     if os.path.exists(checkpoint_path):
-        print("✓ Resuming from checkpoint...\n")
+        print("[OK] Resuming from checkpoint...\n")
         checkpoint = torch.load(checkpoint_path, map_location=config.device)
         model.load_state_dict(checkpoint['model_state_dict'])
         start_epoch = checkpoint.get('epoch', 0) + 1
         best_iou = checkpoint.get('iou', 0.0)
-        print(f"✓ Resumed at epoch {start_epoch + 1}\n")
+        print(f"[OK] Resumed at epoch {start_epoch + 1}\n")
     
     # Training
     print("="*80)
@@ -267,7 +297,7 @@ def train(config):
                 'loss': val_loss,
                 'iou': val_iou,
             }, checkpoint_path)
-            print(" ← ✓ Best saved")
+            print(" ← [OK] Best saved")
         else:
             print()
     
@@ -281,7 +311,7 @@ def train(config):
     print(f"Best validation IoU: {best_iou:.4f}")
     print(f"Best validation Loss: {best_loss:.4f}")
     print(f"Epochs: {len(history['train_loss'])}")
-    print(f"✓ Model saved: {checkpoint_path}")
+    print(f"[OK] Model saved: {checkpoint_path}")
     print("="*80)
 
 # ============================================================================

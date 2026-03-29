@@ -209,7 +209,7 @@ numpy
 - How to push code
 - Repository setup
 
-#### 10. **KAGGLE_NOTEBOOK_FIXED.py**
+#### 10. **kaggle_training.py**
 - Standalone Kaggle notebook version
 - Alternative if judges want to run on Kaggle
 - All-in-one cell design
