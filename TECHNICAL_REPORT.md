@@ -21,11 +21,12 @@
 This report documents the development and deployment of a high-performance semantic segmentation model for classifying desert terrain features using PyTorch on Google Colab. The project achieved a **validation IoU of 0.9882+**, significantly exceeding the target of 0.90.
 
 **Key Achievements:**
-- ✅ **IoU Performance: 0.9882** (Target: 0.90)
+- ✅ **IoU Performance: 0.9905** (Validation Best, +10.06% above 0.90 target)
 - ✅ **Model Size: 33.08M parameters** (Efficient, production-ready)
-- ✅ **Training Time: ~35-40 seconds per epoch on T4 GPU**
+- ✅ **Training Time: ~2 hours for 50 epochs (2min 20s per epoch on T4 GPU)**
 - ✅ **Training Infrastructure: Kaggle Notebooks (Free GPU)**
 - ✅ **End-to-End Pipeline: Data loading → Training → Inference**
+- ✅ **Best Validation Loss: 0.3225** (Excellent convergence)
 
 ---
 
@@ -122,7 +123,7 @@ FCN-ResNet50
 1. **Simplicity**: No complex ASPP modules prone to BatchNorm errors
 2. **Stability**: Proven architecture, used in production systems
 3. **Capacity**: 33.08M parameters sufficient for 256-class segmentation
-4. **Speed**: Fast forward/backward passes (~40s/epoch on T4)
+4. **Speed**: Fast forward/backward passes (~2min 20s per epoch on T4)
 5. **Compatibility**: Works with mixed precision training
 
 **Key Parameters:**
@@ -235,14 +236,19 @@ Loss = CrossEntropyLoss(outputs, targets, ignore_index=255)
 ### 4.2 Key Metrics Summary
 
 **Final Performance:**
-- **Best Validation IoU: 0.9889** ✅ (Exceeds 0.90 target by 9.9%)
-- **Final Training IoU: 0.9899**
+- **Best Validation IoU: 0.9905** ✅ (Exceeds 0.90 target by 10.06%)
+- **Final Training IoU: 0.9915**
 - **IoU Gap: 0.0010** (Excellent generalization, no overfitting)
 
 **Loss Metrics:**
-- **Best Validation Loss: 0.3998**
-- **Final Training Loss: 0.4328**
+- **Best Validation Loss: 0.3225**
+- **Final Training Loss: 0.3524**
 - Loss decreased monotonically, indicating stable training
+
+**Training Performance:**
+- **Per-Epoch Time: ~2min 20s** (on Tesla T4 GPU)
+- **Validation Time: ~30s** (per epoch)
+- **Total Training Time: ~2 hours** (50 epochs)
 
 ### 4.3 Per-Class Analysis
 
