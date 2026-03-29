@@ -1,5 +1,5 @@
 # 🎯 Semantic Segmentation for Desert Offroad Terrain
-## FCN-ResNet50 Model | IoU: 0.9889 (Target: 0.90) ✅ EXCEEDS BY 9.87%
+## FCN-ResNet50 Model | **Validation IoU: 0.9905** ✅
 
 ---
 
@@ -9,7 +9,7 @@
 
 **Why Kaggle?**
 - ✅ Free T4 GPU (30 hours/week allocation)
-- ✅ Training time: ~50 minutes (35-40s per epoch)
+- ✅ Training time: ~2 hours (2m 20s per epoch + 30s validation)
 - ✅ No setup required, cloud-based
 - ✅ Easy model download
 
@@ -54,18 +54,20 @@ python test.py --model outputs/checkpoints/best_model.pt --data Offroad_Segmenta
 
 **Time Estimates:**
 ```
-Kaggle (T4 GPU):     ~50 minutes  ✅ RECOMMENDED
-Local (RTX 3090):    ~4-8 hours
+Kaggle (T4 GPU):     ~2 hours (2m 20s/epoch × 50)  ✅ RECOMMENDED
+Local (RTX 3090):    ~1.5-2 hours
 Local (CPU only):    ~70-100 hours ⚠️ NOT RECOMMENDED
 ```
 
 **Expected Output:**
 ```
-E 1/50 | Train IoU: 0.9829 | Val IoU: 0.9867
-E 2/50 | Train IoU: 0.9883 | Val IoU: 0.9873
-E 3/50 | Train IoU: 0.9890 | Val IoU: 0.9882
-...
-E 50/50 | Train IoU: 0.9899 | Val IoU: 0.9889 ✅
+E 1/50  | Train IoU: 0.9821 | Val IoU: 0.9862
+E 5/50  | Train IoU: 0.9895 | Val IoU: 0.9887
+E10/50  | Train IoU: 0.9903 | Val IoU: 0.9893
+E19/50  | Train IoU: 0.9907 | Val IoU: 0.9900
+E28/50  | Train IoU: 0.9912 | Val IoU: 0.9903
+E39/50  | Train IoU: 0.9915 | Val IoU: 0.9905 ← ✓ BEST
+E50/50  | Train IoU: 0.9915 | Val IoU: 0.9905 ✅
 ```
 
 ---
@@ -108,15 +110,16 @@ This folder contains the complete submission package for the semantic segmentati
 ╔════════════════════════════════════════════════════════════════╗
 ║              SEMANTIC SEGMENTATION RESULTS                    ║
 ╠════════════════════════════════════════════════════════════════╣
-║  Validation IoU:         0.9889  (Target: 0.90) ✅            ║
-║  Training IoU:           0.9899                               ║
-║  Best Validation Loss:   0.3998                               ║
-║  Model Parameters:       33.08M                               ║
-║  Training Time:          ~50 minutes                          ║
-║  Inference Speed:        50ms per image                       ║
-║  GPU Memory:             14.5 / 14.56 GB                      ║
+║  Validation IoU (Best):   0.9905  ✅                           ║
+║  Training IoU (Final):    0.9915                               ║
+║  Best Validation Loss:    0.3225                               ║
+║  Model Parameters:        33.08M                               ║
+║  Training Time:           ~2 hours (50 epochs)                 ║
+║  Per Epoch Time:          2m 20s (training) + 30s (validation) ║
+║  Inference Speed:         50ms per image                       ║
+║  GPU Memory:              15.6 / 16.0 GB (Tesla T4)            ║
 ║                                                               ║
-║  STATUS: ✅ EXCEEDS TARGET BY 9.87%                           ║
+║  STATUS: ✅ MODEL CONVERGED & PRODUCTION READY                ║
 ╚════════════════════════════════════════════════════════════════╝
 ```
 
@@ -258,7 +261,7 @@ Use on Kaggle for free GPU training:
 # 1. Copy entire file
 # 2. Paste into Kaggle notebook as single cell
 # 3. Run
-# 4. Wait for completion (~50 min)
+# 4. Wait for completion (~2 hours)
 # 5. Download best_model.pt
 ```
 
@@ -276,10 +279,10 @@ Inference with test-time augmentation:
 
 ## 🎓 KEY ACHIEVEMENTS
 
-✅ **IoU Performance**: 0.9889 (9.87% above 0.90 target)
-✅ **Minimal Overfitting**: Gap = 0.001 (train vs val)
-✅ **Fast Training**: 35-40 seconds per epoch on T4
-✅ **Memory Efficient**: Fits on free Kaggle GPU
+✅ **IoU Performance**: 0.9905 (Final validation IoU)
+✅ **Minimal Overfitting**: Gap = 0.001 (train: 0.9915 vs val: 0.9905)
+✅ **Fast Training**: 2m 20s per epoch on Tesla T4 GPU
+✅ **Memory Efficient**: Uses 15.6/16.0 GB on free Kaggle GPU
 ✅ **Production Ready**: Stable, reproducible, no errors
 ✅ **Well Documented**: 8-page report + code comments
 ✅ **Easy Deployment**: Single Python script for inference
@@ -295,7 +298,7 @@ python train.py --config config.yaml --data-path ./Offroad_Segmentation_Training
 ```
 
 **Q: Model takes too long?**
-A: Normal. T4 trains at 35-40s/epoch. Full 50 epochs = ~50 min.
+A: Normal. T4 trains at ~2m 20s per epoch. Full 50 epochs = ~2 hours.
 
 **Q: Getting out of memory?**
 A: Reduce batch size (12→8) or image size (320→256) in code.
@@ -308,26 +311,40 @@ A: Use TTA (+0.002), ensemble with U-Net (+0.01), class weighting.
 
 ---
 
-## 📞 SUPPORT
+## 📞 PROJECT LEAD & SUPPORT
+
+**Project Lead:** Tanush Reddy  
+📧 **Email:** reddytanush11@gmail.com  
+📱 **Phone:** 6309360135
 
 For issues or questions:
 1. Check TECHNICAL_REPORT.md (comprehensive technical details)
 2. Review HACKATHON_SUBMISSION.md (executive summary)
 3. Inspect code comments in kaggle_training.py (Kaggle notebook)
+4. Contact project lead via email or phone for urgent issues
 
 ---
 
-## ✅ SUBMISSION CHECKLIST
+## 👥 TEAM MEMBERS
+
+| Name | Role | GitHub |
+|------|------|--------|
+| Tanush Reddy | Project Lead | [@tanushreddy-dev](https://github.com/tanushreddy-dev) |
+| Manognya Kanala | Data & Model | [@manognyakanala](https://github.com/manognyakanala) |
+| Praharsha Reddy | Training & Testing | [@praharshareddy07-byte](https://github.com/praharshareddy07-byte) |
+| Saravan Raja | Infrastructure | [@saravanraja08](https://github.com/saravanraja08) |
+
+---
 
 Before submitting:
-- [x] Model trained and converged
-- [x] IoU > 0.90 achieved (0.9889)
+- [x] Model trained and converged (50 epochs)
+- [x] Validation IoU: 0.9905
 - [x] Checkpoint saved
 - [x] Code reproducible
 - [x] Documentation complete
 - [x] 8-page technical report
 - [x] Inference script ready
-- [x] Results verified
+- [x] Results verified on Kaggle
 
 ---
 
@@ -352,26 +369,16 @@ Before submitting:
 All files are clean, organized, and ready for hackathon submission.
 
 **Total submission size**: < 100MB
-**Time to reproduce**: ~60 minutes (50 min training + 10 min setup)
-**Cost**: FREE (uses Kaggle's free GPU)
-
----
-
-## 👥 Team
-
-| Name | GitHub |
-|------|--------|
-| Tanush Reddy | [@tanushreddy-dev](https://github.com/tanushreddy-dev) |
-| Manognya Kanala | [@manognyakanala](https://github.com/manognyakanala) |
-| Praharsha Reddy | [@praharshareddy07-byte](https://github.com/praharshareddy07-byte) |
-| Saravan Raja | [@saravanraja08](https://github.com/saravanraja08) |
+**Time to reproduce**: ~2 hours (training on Kaggle T4 GPU)
+**Cost**: FREE (uses Kaggle's free GPU allocation)
 
 ---
 
 **Project Status**: ✅ **COMPLETE & PRODUCTION READY**
 
-**Achieved IoU**: 0.9889 (Target: 0.90) ✅
+**Validation IoU**: 0.9905 ✅
 **Model Version**: FCN-ResNet50 v1.0
-**Submission Date**: 2026-03-26
+**Training Platform**: Kaggle (Tesla T4 GPU)
+**Submission Date**: 2026-03-29
 
 🏆 **Thank you and good luck with your hackathon submission!** 🏆
